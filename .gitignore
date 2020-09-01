@@ -3,6 +3,11 @@
 
 # Log file
 *.log
+logs/
+logs_history/
+
+.idea
+*.iml
 
 # BlueJ files
 *.ctxt
