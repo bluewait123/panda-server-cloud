@@ -1,0 +1,31 @@
+server:
+  port: 18803
+
+spring:
+  application:
+    name: manager-file
+  profiles:
+    active: debug
+  jndi:
+    ignore: true
+
+logging:
+  config: ${user.dir}/config/logConfig.xml
+  path: ${user.dir}
+  level:
+    org:
+      springframework:
+        boot:
+          autoconfigure: ERROR
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1201/eureka
+#  instance:
+#    instance-id: boss-system-18801
+
+# 配置监控信息
+info:
+  app.name: manager-file
+  company.name: wjh_q@163.com

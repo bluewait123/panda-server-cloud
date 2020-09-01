@@ -1,0 +1,47 @@
+server:
+  port: 1202
+  servlet:
+    context-path: /boss-gateway
+
+spring:
+  profiles:
+    active: debug
+  jndi:
+    ignore: true
+  application:
+    name: boss-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: false # 是否将服务id转换为小写
+      routes:
+        - id: boss-system
+          uri: lb://boss-system
+          predicates:
+            - Path=/api/boss-system/**
+          filters:
+            - StripPrefix=1
+            - BossAuthResourceFilter
+
+logging:
+  config: ${user.dir}/config/logConfig.xml
+  path: ${user.dir}
+  level:
+    org:
+      springframework:
+        boot:
+          autoconfigure: ERROR
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1201/eureka
+#  instance:
+#    instance-id: boss-system-18801
+
+# 配置监控信息
+info:
+  app.name: boss-gateway
+  company.name: wjh_q@163.com

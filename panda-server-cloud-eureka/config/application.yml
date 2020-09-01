@@ -1,0 +1,24 @@
+server:
+  port: 1201
+
+spring:
+  profiles:
+    active: debug
+  # 忽略jndi日志
+  jndi:
+    ignore: true
+  freemarker:
+    # 不使用文件系统优先，而使用classpath下的资源文件优先，解决打jar包运行后，出现的异常问题
+    # 或者在resources文件夹下，增加template文件夹，存放自定义的Eureka管理界面
+    prefer-file-system-access: false
+
+# 日志配置
+logging:
+  config: ${user.dir}/config/logConfig.xml
+  path: ${user.dir}
+  # 设置springboot为ERROR日志级别，默认debug一堆日志
+  level:
+    org:
+      springframework:
+        boot:
+          autoconfigure: ERROR
